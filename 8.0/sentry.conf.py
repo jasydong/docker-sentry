@@ -25,6 +25,7 @@ from sentry.conf.server import *  # NOQA
 
 import os
 import os.path
+import requests
 
 CONF_ROOT = os.path.dirname(__file__)
 
@@ -209,6 +210,18 @@ SENTRY_WEB_OPTIONS = {
     # 'workers': 3,  # the number of gunicorn workers
     # 'secure_scheme_headers': {'X-FORWARDED-PROTO': 'https'},
 }
+
+allow_host = os.environ.get('SENTRY_ALLOW_HOST')
+if allow_host:
+    ALLOWED_HOSTS = [allow_host]
+
+if 'SENTRY_ALLOW_DETECTED_EC2_HOST' in os.environ:
+    ec2_ip = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4', timeout=0.1).text
+    ec2_hostname = requests.get('http://169.254.169.254/latest/meta-data/public-hostname', timeout=0.1).text
+    try:
+        ALLOWED_HOSTS.extend([ec2_ip, ec2_hostname])
+    except NameError:
+        ALLOWED_HOSTS = [ec2_ip, ec2_hostname]
 
 ###############
 # Mail Server #
