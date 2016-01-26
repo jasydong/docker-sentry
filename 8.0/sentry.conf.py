@@ -251,3 +251,10 @@ MAILGUN_API_KEY = os.environ.get('SENTRY_MAILGUN_API_KEY') or ''
 secret_key = os.environ.get('SENTRY_SECRET_KEY')
 if secret_key:
     SECRET_KEY = secret_key
+
+#########
+# OAuth #
+#########
+
+GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET')

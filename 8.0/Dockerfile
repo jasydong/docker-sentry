@@ -6,7 +6,7 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK on
 
 ENV SENTRY_VERSION 8.0.4
 
-RUN pip install sentry==$SENTRY_VERSION uwsgi
+RUN pip install sentry==$SENTRY_VERSION uwsgi https://github.com/getsentry/sentry-auth-google/archive/master.zip
 
 ENV SENTRY_CONF=/etc/sentry \
     SENTRY_FILESTORE_DIR=/var/lib/sentry/files
