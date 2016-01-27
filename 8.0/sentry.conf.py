@@ -188,10 +188,14 @@ SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 # Any Django storage backend is compatible with Sentry. For more solutions see
 # the django-storages package: https://django-storages.readthedocs.org/en/latest/
 
-SENTRY_FILESTORE = 'django.core.files.storage.FileSystemStorage'
-SENTRY_FILESTORE_OPTIONS = {
-    'location': os.environ['SENTRY_FILESTORE_DIR'],
-}
+if 'SENTRY_FILES_BUCKET' in os.environ:
+    SENTRY_FILESTORE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_STORAGE_BUCKET_NAME = os.environ['SENTRY_FILES_BUCKET']
+else:
+    SENTRY_FILESTORE = 'django.core.files.storage.FileSystemStorage'
+    SENTRY_FILESTORE_OPTIONS = {
+        'location': os.environ['SENTRY_FILESTORE_DIR'],
+    }
 
 ##############
 # Web Server #
