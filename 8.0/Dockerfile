@@ -12,6 +12,7 @@ RUN pip install \
     https://github.com/getsentry/sentry-auth-google/archive/master.zip \
     boto \
     django-storages-redux \
+    django-ses \
     sentry-pivotal
 
 ENV SENTRY_CONF=/etc/sentry \

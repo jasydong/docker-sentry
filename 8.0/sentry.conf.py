@@ -242,6 +242,9 @@ if email:
     EMAIL_HOST_USER = os.environ.get('SENTRY_EMAIL_USER') or ''
     EMAIL_PORT = int(os.environ.get('SENTRY_EMAIL_PORT') or 25)
     EMAIL_USE_TLS = 'SENTRY_EMAIL_USE_TLS' in os.environ
+elif 'SENTRY_SES_ENDPOINT' in os.environ:
+    EMAIL_BACKEND = 'django_ses.SESBackend'
+    AWS_SES_REGION_ENDPOINT = os.environ['SENTRY_SES_ENDPOINT']
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
