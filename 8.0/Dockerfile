@@ -10,8 +10,6 @@ RUN pip install \
     sentry==$SENTRY_VERSION \
     uwsgi \
     https://github.com/getsentry/sentry-auth-google/archive/master.zip \
-    https://github.com/getsentry/pyvotal/archive/master.zip \
-    https://github.com/getsentry/sentry-pivotal/archive/master.zip \
     https://github.com/getsentry/sentry-slack/archive/master.zip \
     boto \
     django-storages-redux \
