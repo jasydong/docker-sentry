@@ -20,14 +20,14 @@ ENV SENTRY_CONF=/etc/sentry \
 
 RUN mkdir -p $SENTRY_CONF && mkdir -p $SENTRY_FILESTORE_DIR
 
-COPY sentry.conf.py /etc/sentry/
-COPY config.yml /etc/sentry/
-COPY uwsgi.ini /etc/
+COPY 8.0/sentry.conf.py /etc/sentry/
+COPY 8.0/config.yml /etc/sentry/
+COPY 8.0/uwsgi.ini /etc/
 
 # Allow Celery to run as root
 ENV C_FORCE_ROOT 1
 
-COPY docker-entrypoint.sh /
+COPY 8.0/docker-entrypoint.sh /
 
 EXPOSE 9000
 VOLUME /var/lib/sentry/files
